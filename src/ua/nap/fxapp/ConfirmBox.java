@@ -22,7 +22,6 @@ public class ConfirmBox {
 
         Button yesButton = new Button("YES");
         Button noButton = new Button("NO");
-
         yesButton.setOnAction(event -> {
             answer = true;
             window.close();

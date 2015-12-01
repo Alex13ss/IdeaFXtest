@@ -12,21 +12,16 @@ public class AlertBox {
 
     public static void display(String title, String message) {
         Stage window = new Stage();
-
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinWidth(250);
-
-        Label label  =new Label();
+        Label label = new Label();
         label.setText(message);
-
         Button closeButton = new Button("Close this window");
         closeButton.setOnAction(event -> window.close());
-
         VBox layout = new VBox();
         layout.getChildren().addAll(label, closeButton);
         layout.setAlignment(Pos.CENTER);
-
         window.setScene(new Scene(layout));
         window.showAndWait();
     }

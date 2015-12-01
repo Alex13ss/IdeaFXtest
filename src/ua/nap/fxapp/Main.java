@@ -19,20 +19,25 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setTitle("Title of window");
-
-        button = new Button("Click Me");
-        button.setOnAction(event -> {
-            boolean result = ConfirmBox.display("Title", "Are U sure U want to send naked pics?");
-            System.out.println(result);
+        window.setOnCloseRequest(event -> {
+            event.consume();
+            closeProgram();
         });
+        button = new Button("Close Program");
+        button.setOnAction(event -> closeProgram());
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
         Scene scene = new Scene(layout, 300, 250);
-
         window.setScene(scene);
-
         window.show();
+    }
+
+    private void closeProgram() {
+        Boolean answer = ConfirmBox.display("Stupid title", "Sure U want to EXIT?");
+        if (answer) {
+            window.close();
+        }
     }
 
 }
