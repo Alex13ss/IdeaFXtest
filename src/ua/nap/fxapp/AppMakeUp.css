@@ -1,0 +1,11 @@
+.root {
+    -fx-background-color: #A1B56C;
+}
+.button {
+    -fx-background-color: #13FFFF;
+    -fx-text-fill: #225577;
+    -fx-background-radius: 3;
+}
+#bold-label {
+    -fx-font-weight: bold;
+}
