@@ -5,13 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -19,6 +16,7 @@ public class Main extends Application {
     Stage window;
     TableView<Product> table;
     TextField nameInput, priceInput, quantityInput;
+    BorderPane layout;
 
     public static void main(String[] args) {
         launch(args);
@@ -28,6 +26,17 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setTitle("JavaFX");
+
+        Menu fileMenu = new Menu("File");
+
+        fileMenu.getItems().add(new MenuItem("New Project..."));
+        fileMenu.getItems().add(new MenuItem("New Module..."));
+        fileMenu.getItems().add(new MenuItem("Import Project"));
+
+
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().addAll(fileMenu);
+
 
         TableColumn<Product, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setMinWidth(200);
@@ -67,10 +76,11 @@ public class Main extends Application {
         table.setItems(getProduct());
         table.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
 
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(table, hBox);
-
-        Scene scene = new Scene(vBox);
+        layout = new BorderPane();
+        layout.setTop(menuBar);
+        layout.setCenter(table);
+        layout.setBottom(hBox);
+        Scene scene = new Scene(layout, 600, 500);
         window.setScene(scene);
         window.show();
     }
